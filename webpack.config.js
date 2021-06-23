@@ -13,7 +13,70 @@ module.exports = {
     },
     module:{
         rules:[
+            {
+                // exclude: ,如果配置了include久可以不需要配置exclude选项了
+                include: path.resolve(__dirname,'src'),//只处理src下面的js文件
+                test:/\.js$/,
+                use:[
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets:[
+                                ["@babel/preset-env",
+                                    {targets:{ //兼容到哪个版本
+                                    "chrome":58,
+                                    "ie":11
+                                },
+                                "corejs":3, //corejs版本
+                                "useBuiltIns":"usage" //按需引入
+                            }]],//这个预设包里面包含了多个处理js语法的预设插件包，
+                            //这个配置有s 而且是一个数组 可能有多个预设包
+                            // 如果还需要其它
+                            //插件就可以在下面自己配置一个plugins里面配置
+                            plugins: [
 
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                include: path.resolve(__dirname,'src'),
+                test:/\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: "url-loader",//直接用file-loader不能进行base64处理
+                        //url-loader内部使用了file-loader但是 file-loader需要自己下载。
+                        options: {
+                            limit:1024*20,//转base64的大小。  这里是小于20kb就采用base64处理
+                            name:"static/img/[name].[hash:6].[ext]"
+                        }
+                    }
+                ]
+            },
+            {
+                include: path.resolve(__dirname,'src'),
+                test:/\.css$/,
+                use:[
+                    "style-loader",
+                    "css-loader",
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions:{
+                                plugins:[
+                                    ["postcss-preset-env",
+                                        {
+                                            browsers:'last 2 versions'
+                                        }
+                                    ]
+
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
         ]
     },
     plugins: [
