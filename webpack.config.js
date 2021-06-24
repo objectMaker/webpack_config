@@ -9,7 +9,11 @@ module.exports = {
     },
     output:{
         path:path.resolve(__dirname,'dist'),//注意不需要加./
-        filename:"[name].abc.js"//这里使用[name]就获取了main这个名字
+        filename:"[name].abc.js",//这里使用[name]就获取了main这个名字
+        environment: { //webpack打包的文件默认带上了箭头函数和const关键字 ，如果我们要兼容ie11，则需要把这两个值设为false
+            arrowFunction: false,
+            const: false
+        }
     },
     module:{
         rules:[
