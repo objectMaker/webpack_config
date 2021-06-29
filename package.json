@@ -6,7 +6,10 @@
     "unServer": "webpack serve --open chrome.exe --port 8083",
     "build": "webpack"
   },
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",

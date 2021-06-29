@@ -92,6 +92,13 @@ module.exports = {
     devServer: {
         port:8082,//配置开发服务器打开端口
         open:true,//配置是否自动打开
-        quiet:true//静默打包输出日志更少
+        quiet:true,//静默打包输出日志更少,
+        proxy:{
+            '/api':{
+                target:'http://localhost:3001',
+                pathRewrite:{'^/api':''},
+                changeOrigin:true
+            }
+        }
     }
 }
