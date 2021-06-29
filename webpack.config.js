@@ -96,8 +96,8 @@ module.exports = {
         proxy:{
             '/api':{
                 target:'http://localhost:3001',
-                pathRewrite:{'^/api':''},
-                changeOrigin:true
+                pathRewrite:{'^/api':''},//将匹配到的path重写
+                changeOrigin:true //协议名 和 主机可以不同
             }
         }
     }
