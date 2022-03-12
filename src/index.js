@@ -26,3 +26,16 @@ axios.get('http://localhost:8082/api/test',{
 },reason=>{
     console.log(reason);
 })
+//发送跨域请求测试
+axios.get('http://localhost:8082/api/bc',{
+    params:{
+        name:'abc'
+    },
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    },
+}).then(value=>{
+    console.log(value);
+},reason=>{
+    console.log(reason);
+})
