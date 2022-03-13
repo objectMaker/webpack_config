@@ -1,14 +1,17 @@
-const express = require('express')
-const app = express()
-app.get('/test',(req,res)=>{
-    console.log(req.query);
-    console.log(req.data);
-    if(req.query.name === 'abc'){
-        res.send('你的名字是abc')
-    }else{
-        res.send('你的名字不是abc')
-    }
-})
-app.listen('3001',function (){
-    console.log('服务器启动成功');
-})
+const express = require("express");
+const app = express();
+app.get("/test", (req, res) => {
+  console.log(req.query);
+  console.log(req.data);
+  if (req.query.name === "abc") {
+    res.send("你的名字是abc");
+  } else {
+    res.send("你的名字不是abc");
+  }
+});
+app.get("/bc", (req, res) => {
+  res.send(`你的名字是${req.query.name}`);
+});
+app.listen("3001", function () {
+  console.log("服务器启动成功");
+});
